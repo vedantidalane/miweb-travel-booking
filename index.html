@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WanderLust – Travel Booking</title>
+  <meta name="description" content="Explore beautiful destinations, find the best travel packages and book your dream vacation with WanderLust."/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><i class="fas fa-plane me-2"></i>WanderLust</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <li class="nav-item"><a class="nav-link" href="destinations.html"><i class="fas fa-map-marker-alt me-1"></i>Destinations</a></li>
+        <li class="nav-item"><a class="nav-link" href="packages.html"><i class="fas fa-suitcase me-1"></i>Packages</a></li>
+        <li class="nav-item"><a class="nav-link" href="booking.html"><i class="fas fa-calendar-check me-1"></i>Book Now</a></li>
+        <li class="nav-item" id="authNav"><a class="nav-link" href="login.html"><i class="fas fa-user me-1"></i>Login</a></li>
+        <li class="nav-item"><button class="theme-toggle" onclick="toggleTheme()"></button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 fade-in">
+        <span class="hero-badge">✈️ Explore. Discover. Adventure.</span>
+        <h1>Your Dream<br/>Vacation Awaits</h1>
+        <p class="mt-3 opacity-90 fs-5">Discover breathtaking destinations across the world. Book your perfect trip with exclusive deals and personalized packages.</p>
+        <!-- Search Widget -->
+        <div class="search-bar-hero">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="text-white small fw-600 mb-1"><i class="fas fa-map-marker-alt me-1"></i>Destination</label>
+              <select class="form-select form-select-sm" id="destSearch">
+                <option value="">All Destinations</option>
+                <option>Goa</option><option>Manali</option><option>Kerala</option>
+                <option>Rajasthan</option><option>Leh-Ladakh</option><option>Andaman</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="text-white small fw-600 mb-1"><i class="fas fa-calendar me-1"></i>Travel Date</label>
+              <input type="date" class="form-control form-control-sm" id="travelDate" min="2024-01-01"/>
+            </div>
+            <div class="col-md-3">
+              <label class="text-white small fw-600 mb-1"><i class="fas fa-users me-1"></i>Travellers</label>
+              <select class="form-select form-select-sm" id="travellers">
+                <option>1 Adult</option><option>2 Adults</option><option>2A + 1C</option><option>4+</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button class="btn btn-warning w-100 fw-700 rounded-pill" onclick="searchDest()"><i class="fas fa-search me-1"></i>Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center mt-4 mt-lg-0">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner rounded-xl" style="border-radius:16px;overflow:hidden;">
+            <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=500&h=350&fit=crop" alt="Goa" class="d-block w-100" style="height:280px;object-fit:cover;"/></div>
+            <div class="carousel-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=350&fit=crop" alt="Mountains" class="d-block w-100" style="height:280px;object-fit:cover;"/></div>
+            <div class="carousel-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&h=350&fit=crop" alt="Kerala" class="d-block w-100" style="height:280px;object-fit:cover;"/></div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR DESTINATIONS -->
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title">Popular Destinations</h2>
+      <a href="destinations.html" class="btn btn-outline-primary rounded-pill">View All</a>
+    </div>
+    <div class="row g-4" id="destGrid"></div>
+  </div>
+</section>
+
+<!-- FEATURED PACKAGES -->
+<section class="py-5" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title">Featured Packages</h2>
+      <a href="packages.html" class="btn btn-outline-primary rounded-pill">All Packages</a>
+    </div>
+    <div class="row g-4" id="pkgGrid"></div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Why WanderLust?</h2>
+    <div class="row g-4">
+      <div class="col-md-3 text-center"><div class="p-4 rounded-xl" style="background:var(--bg-card);border:1px solid var(--border-color);box-shadow:var(--shadow);"><div style="font-size:2.5rem;margin-bottom:12px;">🏆</div><h5 class="fw-700">Best Price Guarantee</h5><p class="text-muted small">We match any price. Book with confidence.</p></div></div>
+      <div class="col-md-3 text-center"><div class="p-4 rounded-xl" style="background:var(--bg-card);border:1px solid var(--border-color);box-shadow:var(--shadow);"><div style="font-size:2.5rem;margin-bottom:12px;">🛡️</div><h5 class="fw-700">Secure Booking</h5><p class="text-muted small">Your data is encrypted and protected.</p></div></div>
+      <div class="col-md-3 text-center"><div class="p-4 rounded-xl" style="background:var(--bg-card);border:1px solid var(--border-color);box-shadow:var(--shadow);"><div style="font-size:2.5rem;margin-bottom:12px;">📞</div><h5 class="fw-700">24/7 Support</h5><p class="text-muted small">Expert travel support anytime, anywhere.</p></div></div>
+      <div class="col-md-3 text-center"><div class="p-4 rounded-xl" style="background:var(--bg-card);border:1px solid var(--border-color);box-shadow:var(--shadow);"><div style="font-size:2.5rem;margin-bottom:12px;">🔄</div><h5 class="fw-700">Free Cancellation</h5><p class="text-muted small">Cancel up to 48 hours before with no fee.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4"><div class="footer-brand mb-3"><i class="fas fa-plane me-2"></i>WanderLust</div><p class="opacity-75">Your trusted travel partner for unforgettable experiences across the globe.</p></div>
+      <div class="col-lg-2 col-6"><h5>Explore</h5><a href="destinations.html">Destinations</a><a href="packages.html">Packages</a><a href="booking.html">Book Now</a></div>
+      <div class="col-lg-2 col-6"><h5>Account</h5><a href="login.html">Login</a><a href="register.html">Register</a></div>
+      <div class="col-lg-4"><h5>Newsletter</h5><p class="opacity-75">Get exclusive travel deals in your inbox.</p><div class="input-group"><input type="email" class="form-control" placeholder="Your email"/><button class="btn btn-primary"><i class="fas fa-paper-plane"></i></button></div></div>
+    </div>
+    <div class="footer-bottom text-center"><p class="mb-0 opacity-75">© 2024 WanderLust. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/data.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => { checkAuth(); renderHomeDests(); renderHomePkgs(); });
+  function renderHomeDests() {
+    document.getElementById('destGrid').innerHTML = DESTINATIONS.slice(0,6).map(d=>`
+      <div class="col-md-4">
+        <div class="dest-card" onclick="window.location='destinations.html?id=${d.id}'" style="cursor:pointer;position:relative;">
+          <img src="${d.image}" alt="${d.name}"/>
+          <div class="label"><h5 class="fw-700 mb-1">${d.name}</h5><div class="small"><i class="fas fa-map-marker-alt me-1"></i>${d.state}</div><div class="d-flex gap-3 mt-2 small"><span>⭐ ${d.rating}</span><span>From ₹${d.fromPrice.toLocaleString()}</span></div></div>
+        </div>
+      </div>`).join('');
+  }
+  function renderHomePkgs() {
+    document.getElementById('pkgGrid').innerHTML = PACKAGES.slice(0,6).map(p=>`
+      <div class="col-md-4">
+        <div class="package-card">
+          <img src="${p.image}" alt="${p.name}" style="width:100%;height:180px;object-fit:cover;"/>
+          <div class="p-4">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h6 class="fw-700">${p.name}</h6>
+              <span class="package-badge">${p.type}</span>
+            </div>
+            <div class="text-muted small mb-3"><i class="fas fa-calendar me-1"></i>${p.duration} · <i class="fas fa-users me-1"></i>Max ${p.maxPax}</div>
+            <div class="rating small mb-3">★ ${p.rating} (${p.reviews} reviews)</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div><span class="fw-800 text-primary fs-5">₹${p.price.toLocaleString()}</span><div class="text-muted small">per person</div></div>
+              <a href="booking.html?pid=${p.id}" class="btn btn-primary btn-sm rounded-pill px-3">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  function searchDest() {
+    const d = document.getElementById('destSearch').value;
+    window.location.href = `destinations.html${d?'?name='+encodeURIComponent(d):''}`;
+  }
+</script>
+</body>
+</html>
